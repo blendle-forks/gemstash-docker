@@ -4,8 +4,6 @@ LABEL maintainer "Koen Rouwhorst <koenrh@blendle.com>"
 RUN addgroup -g 1000 -S gemstash && \
   adduser -u 1000 -S gemstash -G gemstash
 
-USER gemstash
-
 RUN mkdir -p /home/gemstash/.gemstash && \
   mkdir -p /var/gemstash && \
   chown -R gemstash:gemstash /home/gemstash /var/gemstash
@@ -14,6 +12,8 @@ RUN apk add --no-cache \
   build-base~=0.5 \
   sqlite~=3 \
   sqlite-dev~=3
+
+USER gemstash
 
 RUN gem install --no-ri --no-rdoc gemstash
 
